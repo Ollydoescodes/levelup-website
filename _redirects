@@ -1,0 +1,28 @@
+# Cloudflare Pages redirects — old WordPress URLs -> new single-page site.
+# Keeps Google ranking from the old pages instead of 404ing. Specific rules first,
+# then a catch-all so ANY old path lands on the homepage rather than a dead end.
+/index.html        /            301
+/home              /            301
+/blog              /            301
+/blog/*            /            301
+/events            /#whatson    301
+/event             /#whatson    301
+/whats-on          /#whatson    301
+/booking           /#book       301
+/book              /#book       301
+/membership        /#pricing    301
+/memberships       /#pricing    301
+/pricing           /#pricing    301
+/prices            /#pricing    301
+/games             /#games      301
+/game-library      /#games      301
+/board-games       /#games      301
+/menu              /#menu       301
+/meals             /#menu       301
+/about             /#do         301
+/story             /#do         301
+/gallery           /#do         301
+/friends           /#nomad      301
+/contact           /#visit      301
+/visit             /#visit      301
+/*                 /            301

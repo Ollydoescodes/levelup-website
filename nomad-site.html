@@ -1,0 +1,541 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nomad — the Urban Sanctuary, Siem Reap</title>
+<meta name="description" content="Nomad, Siem Reap — Chef Noo's modern Khmer cooking in an open-fronted urban sanctuary. Happy Hour 4–7pm daily, Monday Market Menu, Sunday pizza. Downstairs from Level Up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#F5C518; --gold2:#f8c63a; --port:#1C9CB8; --port2:#3fa3b8; --steel:#9AA2A2;
+    --bg:#F3EFE4; --panel:#FBF8EF; --ink:#181C1C; --mute:#6A716E; --line:#E6E0D2;
+    --nom-bg:#F5F6EC; --nom-ink:#1A1B16; --nom-sage:#6E8659; --nom-sage-d:#4C6140; --nom-wood:#977A4E; --nom-line:#E1E3D5;
+    --sans:"Poppins","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --geo:"Poppins","Avenir Next",Futura,"Century Gothic","Helvetica Neue",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+    --brut:"Anton",Impact,"Haettenschweiler","Arial Narrow",sans-serif;
+    --maxw:1160px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  .page{background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:clip}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,52px)}
+  img{max-width:100%; display:block}
+  a{color:inherit}
+  .num{font-variant-numeric:tabular-nums}
+  .hex{clip-path:polygon(25% 2%,75% 2%,100% 50%,75% 98%,25% 98%,0 50%)}
+  .ey{font-size:12px; letter-spacing:.22em; text-transform:uppercase; font-weight:700; color:var(--port); margin:0}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:13px 22px; font-weight:700; font-size:14px; text-decoration:none; border:2px solid transparent; transition:transform .15s,background .2s,color .2s,border-color .2s; cursor:pointer; font-family:var(--sans)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:var(--gold); color:#231b00}
+  .btn-gold:hover{background:#ffcf33}
+  .btn-line{border-color:var(--port); color:var(--port); background:none}
+  .btn-line:hover{background:var(--port); color:#fff}
+  .btn-dark{background:var(--ink); color:#fff}
+
+  nav{position:sticky; top:0; z-index:60; display:flex; align-items:center; justify-content:space-between;
+    padding:11px clamp(18px,5vw,52px); background:rgba(244,245,244,.9); backdrop-filter:blur(12px); border-bottom:1px solid var(--line)}
+  .brand{display:flex; align-items:center; gap:11px; font-family:var(--geo); font-weight:800; font-size:16px; letter-spacing:-.01em; text-decoration:none}
+  .markL{width:27px; height:30px; background:var(--gold); color:#231b00; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px; font-family:var(--geo)}
+  .navlinks{display:flex; gap:20px; font-size:13.5px; font-weight:600; align-items:center}
+  .navlinks a{color:var(--mute); text-decoration:none; transition:color .2s}
+  .navlinks a:hover{color:var(--ink)}
+  .navcta{background:var(--port); color:#fff!important; padding:9px 16px; font-weight:700}
+  .navcta:hover{background:#0a7ea1}
+  @media(max-width:900px){.navlinks a:not(.navcta){display:none}}
+
+  header.hero{position:relative; overflow:hidden; padding:clamp(44px,7vw,84px) 0 clamp(40px,6vw,72px);
+    background:radial-gradient(90% 70% at 100% 0%,rgba(0,142,183,.10),transparent 55%),radial-gradient(80% 70% at 0% 100%,rgba(255,193,0,.16),transparent 50%),var(--bg)}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,60px); align-items:center; position:relative; z-index:2}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+  .kick{display:inline-flex; align-items:center; gap:9px; font-size:12.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--port)}
+  .kick .pip{width:9px; height:10px; background:var(--gold)}
+  h1{font-family:var(--geo); font-size:clamp(38px,6vw,66px); line-height:.94; letter-spacing:-.03em; font-weight:800; margin:.24em 0 .3em; text-wrap:balance}
+  .hero .tagline{font-family:var(--geo); font-weight:800; font-size:clamp(24px,3.4vw,38px); line-height:1.02; letter-spacing:-.02em; color:var(--ink); margin:0 0 .55em}
+  .u{position:relative; white-space:nowrap}
+  .u:after{content:""; position:absolute; left:-.02em; right:-.02em; bottom:.08em; height:.16em; background:var(--gold); z-index:-1}
+  .lede{font-size:clamp(17px,2.2vw,21px); color:var(--ink); max-width:46ch; margin:0 0 12px; line-height:1.45}
+  .sub{color:var(--mute); max-width:50ch; margin:0 0 28px; font-size:15.5px}
+  .cta-row{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+
+  /* Big "above Nomad" callout */
+  .abovenomad{display:flex; align-items:center; gap:16px 20px; flex-wrap:wrap; margin-top:26px;
+    padding:16px 20px; background:linear-gradient(100deg,#F1F6EA,#E7F0DC); border:1px solid var(--nom-line); border-left:6px solid var(--nom-sage)}
+  .abovenomad .stack{display:flex; flex-direction:column; gap:3px; flex:none}
+  .abovenomad .stack i{width:26px; height:8px; display:block; background:var(--nom-sage); opacity:.35}
+  .abovenomad .stack i:first-child{opacity:.7}
+  .abovenomad .stack i:last-child{background:var(--gold); opacity:1}
+  .abovenomad .txt{font-family:var(--geo); font-weight:800; font-size:clamp(18px,2.5vw,24px); line-height:1.02; letter-spacing:-.02em; color:var(--nom-sage-d); text-transform:none}
+  .abovenomad .txt small{display:block; font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:.01em; color:var(--nom-wood); margin-top:4px}
+  .abovenomad .txt{min-width:0}
+  .abovenomad .btn{margin-left:auto}
+  @media(max-width:520px){.abovenomad .btn{margin-left:0; width:100%; justify-content:center}}
+  @media(max-width:460px){
+    .cta-row{width:100%}
+    .cta-row .btn{flex:1 1 100%; justify-content:center}
+    .abovenomad{padding:14px 16px}
+  }
+
+  .hero-photo{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .hero-photo .frame{overflow:hidden; border:1px solid var(--line); box-shadow:0 24px 60px -30px rgba(0,0,0,.4)}
+  .hero-photo .frame.big{grid-column:1/-1}
+  .hero-photo .frame.big img{width:100%; height:clamp(220px,30vw,330px); object-fit:cover}
+  .hero-photo .frame.sm img{width:100%; height:clamp(140px,18vw,190px); object-fit:cover}
+  .hero-photo .badge{position:absolute; bottom:-18px; left:-14px; background:var(--gold); color:#231b00; padding:14px 20px; display:flex; gap:14px; align-items:center; box-shadow:0 12px 30px -12px rgba(0,0,0,.4); z-index:3}
+  .hero-photo .badge .b{font-family:var(--geo); font-weight:800; font-size:26px; line-height:1}
+  .hero-photo .badge .s{font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:700; opacity:.8; line-height:1.2}
+  .hexdeco{position:absolute; width:64px; height:72px; z-index:1}
+  .hexdeco.a{top:-22px; right:24px; background:var(--port)}
+  .hexdeco.b{bottom:44px; right:-20px; background:var(--steel); opacity:.5; width:46px; height:52px}
+
+  section{position:relative}
+  /* background hexagon decor */
+  .herohex,.secdeco{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
+  header.hero>.wrap{position:relative; z-index:2}
+  .band>.wrap{position:relative; z-index:1}
+  .band{padding:clamp(48px,7vw,92px) 0}
+  .band.white{background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .head{max-width:60ch; margin-bottom:34px}
+  .head h2{font-family:var(--brut); font-weight:400; font-size:clamp(31px,5vw,52px); letter-spacing:.005em; text-transform:uppercase; margin:.18em 0 .52em; line-height:.96}
+  .head p{color:var(--mute); font-size:16.5px; margin:0; line-height:1.5}
+
+  .do-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+  @media(max-width:760px){.do-grid{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line); background:#fff; overflow:hidden; display:flex; flex-direction:column}
+  .card .ph{height:230px; overflow:hidden}
+  .card .ph img{width:100%; height:100%; object-fit:cover; transition:transform .5s}
+  .card:hover .ph img{transform:scale(1.04)}
+  .card .in{padding:24px 24px 26px}
+  .card .tag{display:inline-flex; align-items:center; gap:8px; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--port)}
+  .card .tag .hx{width:13px; height:15px; background:var(--gold)}
+  .card h3{font-family:var(--geo); font-size:22px; font-weight:800; letter-spacing:-.02em; margin:12px 0 8px}
+  .card p{margin:0; color:var(--mute); font-size:15px; line-height:1.55}
+  .card.text{background:linear-gradient(160deg,#fff,#F7FBFC)}
+  .card.text.gold{background:linear-gradient(160deg,#fff,#FFFBEE)}
+
+  /* GAMES LIBRARY */
+  .gl-bar{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:18px}
+  .gl-search{flex:1; min-width:220px; display:flex; align-items:center; gap:10px; border:1px solid var(--line); background:#fff; padding:11px 16px}
+  .gl-search input{border:none; outline:none; font-size:15px; width:100%; font-family:var(--sans); background:none}
+  .gl-count{font-weight:700; font-size:14px; color:var(--mute); white-space:nowrap}
+  .gl-filters{display:flex; flex-direction:column; gap:10px; margin-bottom:22px}
+  .gl-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+  .gl-row .lab{font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--mute); width:74px; flex:none}
+  .chip2{font-size:13px; font-weight:600; padding:7px 13px; border:1px solid var(--line); background:#fff; cursor:pointer; transition:.15s; font-family:var(--sans); color:var(--ink)}
+  .chip2:hover{border-color:var(--port)}
+  .chip2.on{background:var(--port); border-color:var(--port); color:#fff}
+  .chip2.all.on{background:var(--ink); border-color:var(--ink)}
+  .gl-results{display:flex; flex-wrap:wrap; gap:8px; min-height:60px}
+  .gpill{font-size:13.5px; font-weight:600; padding:8px 13px; background:#fff; border:1px solid var(--line); display:flex; align-items:center; gap:8px}
+  .gpill:before{content:""; width:9px; height:10px; background:var(--gold); clip-path:polygon(25% 2%,75% 2%,100% 50%,75% 98%,25% 98%,0 50%); flex:none}
+  .gl-empty{color:var(--mute); font-size:14px; padding:8px 0}
+  .gl-foot{margin-top:18px; font-size:13.5px; color:var(--mute)}
+
+  /* MENU */
+  .mtabs{display:flex; gap:7px; flex-wrap:wrap; margin-bottom:22px}
+  .mtab{font-family:var(--geo); font-weight:700; font-size:14px; padding:9px 15px; border:1px solid var(--line); background:#fff; cursor:pointer; transition:.15s; color:var(--ink)}
+  .mtab:hover{border-color:var(--gold)}
+  .mtab.on{background:var(--gold); border-color:var(--gold); color:#231b00}
+  .menu-box{border:1px solid var(--line); background:#fff}
+  .mhead{display:flex; justify-content:space-between; align-items:center; padding:13px 22px; background:var(--ink); color:#fff; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:700}
+  .mhead .cols{display:flex; gap:22px}
+  .mhead .cols .c2{background:var(--gold); color:#231b00; padding:3px 10px}
+  .mpanel{padding:6px 22px 18px}
+  .mnote{font-size:12.5px; color:var(--mute); margin:14px 2px 4px; font-weight:600}
+  .mband{display:flex; align-items:baseline; gap:12px; padding:16px 0 6px}
+  .mb-big{font-family:var(--geo); font-weight:800; font-size:26px}
+  .mb-big small{font-size:14px; color:var(--mute); font-weight:600}
+  .mb-pill{font-family:var(--geo); font-weight:800; background:var(--gold); color:#231b00; font-size:15px; padding:4px 12px}
+  .mrows{display:flex; flex-direction:column}
+  .mrow{display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding:12px 0; border-bottom:1px solid #EFEFEC}
+  .mrow:last-child{border-bottom:none}
+  .mi{min-width:0}
+  .mn{font-weight:700; font-size:15.5px}
+  .md{font-size:13px; color:var(--mute); margin-top:2px; line-height:1.4}
+  .mp{display:flex; gap:12px; align-items:baseline; white-space:nowrap; flex:none}
+  .mp .std{font-family:var(--geo); font-weight:800; font-size:16px}
+  .mp .mmem{font-family:var(--geo); font-weight:800; font-size:14px; background:var(--gold); color:#231b00; padding:2px 9px}
+  .vtag{font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:2px 6px; border-radius:3px; vertical-align:middle; margin-left:4px}
+  .vtag.v{background:#E8F3D8; color:#4C6140}
+  .vtag.vg{background:#D8EFE4; color:#1f6e4d}
+  .menu-legend{display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; font-size:12.5px; color:var(--mute)}
+
+  /* PRICING */
+  .price-wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(24px,4vw,44px); align-items:start}
+  @media(max-width:860px){.price-wrap{grid-template-columns:1fr}}
+  .ptable{border:1px solid var(--line); background:#fff}
+  .ptable .top{background:var(--ink); color:#fff; padding:15px 22px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; display:flex; justify-content:space-between}
+  .ptable .r{display:flex; justify-content:space-between; align-items:center; padding:16px 22px; border-bottom:1px solid var(--line)}
+  .ptable .r:last-child{border-bottom:none}
+  .ptable .k{font-weight:700; font-size:15.5px}
+  .ptable .k small{display:block; color:var(--mute); font-weight:400; font-size:13px; margin-top:3px}
+  .ptable .v{font-family:var(--geo); font-weight:800; font-size:24px; color:var(--port); letter-spacing:-.01em; white-space:nowrap}
+  .note{font-size:13px; color:var(--mute); margin:12px 2px 0}
+  .mem-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+  @media(max-width:520px){.mem-grid{grid-template-columns:1fr}}
+  .mem{border:1px solid var(--line); background:#fff; padding:20px}
+  .mem.feat{border-color:var(--gold); box-shadow:0 0 0 3px rgba(255,193,0,.25)}
+  .mem .lvl{font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--mute)}
+  .mem .price{font-family:var(--geo); font-weight:800; font-size:30px; letter-spacing:-.02em; margin:6px 0 2px}
+  .mem .price small{font-size:14px; color:var(--mute); font-weight:600}
+  .mem .best{display:inline-block; background:var(--gold); color:#231b00; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; margin-bottom:8px}
+  .mem ul{list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:7px}
+  .mem li{font-size:13.5px; color:var(--ink); padding-left:18px; position:relative}
+  .mem li:before{content:""; position:absolute; left:0; top:7px; width:9px; height:10px; background:var(--port); clip-path:polygon(25% 2%,75% 2%,100% 50%,75% 98%,25% 98%,0 50%)}
+
+  /* BOOKING */
+  .book-grid{display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(22px,4vw,40px); align-items:start}
+  @media(max-width:860px){.book-grid{grid-template-columns:1fr}}
+  .bform{border:1px solid var(--line); background:#fff; padding:clamp(22px,3vw,30px)}
+  .bform h3{font-family:var(--geo); font-weight:800; font-size:20px; margin:0 0 4px}
+  .bform .subh{color:var(--mute); font-size:14px; margin:0 0 20px}
+  .fgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .ff{display:flex; flex-direction:column; gap:6px}
+  .ff.full{grid-column:1/-1}
+  .ff label{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--mute)}
+  .ff input,.ff select{font-family:var(--sans); font-size:15px; padding:11px 12px; border:1px solid var(--line); background:#fff; outline:none; color:var(--ink)}
+  .ff input:focus,.ff select:focus{border-color:var(--port)}
+  .btotal{display:flex; justify-content:space-between; align-items:center; margin:20px 0 4px; padding:16px 18px; background:#FFFBEE; border:1px solid var(--gold)}
+  .btotal .lab{font-size:13px; font-weight:700}
+  .btotal .lab small{display:block; color:var(--mute); font-weight:500; margin-top:2px}
+  .btotal .amt{font-family:var(--geo); font-weight:800; font-size:28px}
+  .btn-tg{background:#229ED9; color:#fff}
+  .btn-tg:hover{background:#1b8cc2}
+  .bways{font-size:13.5px; color:var(--mute); margin:14px 0 10px}
+  .bbtns{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  @media(max-width:420px){.bbtns{grid-template-columns:1fr}}
+  .bbtns .btn{justify-content:center}
+  .bmsg{margin-top:14px; padding:16px 18px; background:#E7F6EA; border:1px solid #A9D9B4; color:#1f6e3a; font-size:14px; line-height:1.5; display:none}
+  .bmsg.err{background:#FBEAEA; border-color:#E5B3B3; color:#9A2B2B}
+  .bmsg.show{display:block}
+  .bmsg .btn{margin-top:12px}
+  .bmsg .tgtext{margin-top:12px; padding:12px 14px; background:#fff; border:1px solid var(--line); color:var(--ink); font-size:13px; white-space:pre-wrap; line-height:1.5}
+  .bmsg .bmembership{margin:12px 0 0; padding-top:12px; border-top:1px solid #A9D9B4; font-size:13px; color:#1f6e3a; line-height:1.5}
+  /* what happens next */
+  .nextsteps{border:1px solid var(--line); background:#fff}
+  .nextsteps .nh{padding:16px 22px; background:var(--ink); color:#fff; font-family:var(--geo); font-weight:800; font-size:15px; display:flex; align-items:center; gap:10px}
+  .nextsteps .nh .dot{width:8px; height:8px; border-radius:50%; background:#57d38a; box-shadow:0 0 0 3px rgba(87,211,138,.25)}
+  .nstep{display:flex; gap:16px; padding:20px 22px; border-bottom:1px solid var(--line)}
+  .nstep:last-child{border-bottom:none}
+  .nstep .no{font-family:var(--geo); font-weight:800; font-size:15px; color:#231b00; background:var(--gold); width:30px; height:34px; display:flex; align-items:center; justify-content:center; flex:none; clip-path:polygon(25% 2%,75% 2%,100% 50%,75% 98%,25% 98%,0 50%)}
+  .nstep h4{font-family:var(--geo); font-weight:800; font-size:16px; margin:0 0 4px; letter-spacing:-.01em}
+  .nstep p{margin:0; color:var(--mute); font-size:14px; line-height:1.5}
+  .nnote{font-size:12.5px; color:var(--mute); margin-top:12px; line-height:1.55}
+
+  /* WHAT'S ON */
+  .week-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media(max-width:760px){.week-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.week-grid{grid-template-columns:1fr}}
+  .wev{position:relative; background:#fff; border:1px solid var(--line); padding:22px 20px 20px 26px; overflow:hidden; transition:transform .15s,box-shadow .2s}
+  .wev:hover{transform:translateY(-3px); box-shadow:0 16px 34px -22px rgba(0,0,0,.4)}
+  .wev:before{content:""; position:absolute; left:0; top:0; bottom:0; width:6px; background:var(--gold)}
+  .wev.sage:before{background:var(--nom-sage)}
+  .wev.port:before{background:var(--port)}
+  .wev.daily:before{background:linear-gradient(var(--gold),var(--port))}
+  .wev .day{display:inline-flex; align-items:center; gap:8px; font-family:var(--geo); font-weight:800; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); padding-right:78px}
+  .wev .day .hx{width:11px; height:13px; background:var(--gold); clip-path:polygon(25% 2%,75% 2%,100% 50%,75% 98%,25% 98%,0 50%); flex:none}
+  .wev.sage .day .hx{background:var(--nom-sage)}
+  .wev.port .day .hx{background:var(--port)}
+  .wev h3{font-family:var(--geo); font-weight:800; font-size:20px; letter-spacing:-.02em; margin:11px 0 7px; line-height:1.05}
+  .wev .tm{font-size:14px; color:var(--ink); font-weight:700}
+  .wev .ds{font-size:13.5px; color:var(--mute); margin-top:5px; line-height:1.45; max-width:34ch}
+  .wev .pr{position:absolute; top:18px; right:16px; font-family:var(--geo); font-weight:800; font-size:14px; background:var(--gold); color:#231b00; padding:3px 11px}
+  .wev .pr.free{background:#E7F6EA; color:#1f6e3a}
+  .wev .dpnote{display:inline-block; margin-top:11px; font-size:11.5px; font-weight:700; line-height:1.35;
+    color:#12708a; background:rgba(28,156,184,.10); border-left:3px solid var(--port); padding:5px 10px}
+  .wev.sage .dpnote{color:var(--nom-sage-d); background:rgba(110,134,89,.12); border-left-color:var(--nom-sage)}
+
+  /* NOMAD */
+  .nomad{background:var(--nom-bg); color:var(--nom-ink); font-family:var(--geo); position:relative; overflow:hidden; padding:clamp(52px,8vw,100px) 0; border-top:1px solid var(--nom-line)}
+  .nomad svg.sprig{position:absolute; pointer-events:none; opacity:.55; z-index:1}
+  .nomad .inner{position:relative; z-index:2}
+  .nomad-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,64px); align-items:center}
+  @media(max-width:860px){.nomad-grid{grid-template-columns:1fr}}
+  .nomad .down{display:inline-flex; align-items:center; gap:9px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--nom-sage-d)}
+  .nomad h2{font-size:clamp(40px,7vw,78px); font-weight:600; letter-spacing:-.02em; line-height:.94; margin:.14em 0 .04em}
+  .nomad .wm{font-family:var(--sans); font-size:15px; color:var(--nom-sage-d); margin:0 0 14px}
+  .nomad .say{font-family:var(--serif); font-style:italic; font-size:clamp(19px,2.6vw,26px); line-height:1.35; max-width:26ch; margin:.1em 0 .5em}
+  .nomad .desc{font-family:var(--serif); font-size:16.5px; line-height:1.6; color:#3b3d33; max-width:52ch; margin:0 0 18px}
+  .nom-list{border-top:1px solid var(--nom-line); margin:8px 0 22px}
+  .nom-list .row{display:flex; justify-content:space-between; gap:16px; padding:13px 2px; border-bottom:1px solid var(--nom-line)}
+  .nom-list .k{font-weight:600; font-size:15px}
+  .nom-list .k small{display:block; font-family:var(--serif); font-style:italic; color:var(--nom-sage-d); font-weight:400; font-size:13.5px; margin-top:2px}
+  .nom-list .v{font-family:var(--serif); font-style:italic; color:var(--nom-wood); white-space:nowrap; font-size:14.5px}
+  .nom-photos{display:grid; grid-template-columns:1.25fr .75fr; gap:12px}
+  .nom-photos img{width:100%; height:clamp(320px,44vw,480px); object-fit:cover; border:1px solid var(--nom-line)}
+  .nom-close{font-family:var(--sans); font-size:clamp(20px,3vw,28px); color:var(--nom-sage-d)}
+  .nom-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px}
+  .btn-sage{background:var(--nom-sage-d); color:#fff}
+  .btn-sage-line{border:2px solid var(--nom-sage-d); color:var(--nom-sage-d); background:none}
+
+  /* MARKET TOUR */
+  .tour{background:var(--nom-bg); color:var(--nom-ink); font-family:var(--geo); border-top:1px solid var(--nom-line); padding:clamp(46px,7vw,84px) 0; position:relative; overflow:hidden}
+  .tour svg.sprig{position:absolute; pointer-events:none; opacity:.5; z-index:1}
+  .tour .inner{position:relative; z-index:2}
+  .tour-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(26px,5vw,54px); align-items:center}
+  @media(max-width:800px){.tour-grid{grid-template-columns:1fr}}
+  .tour .lab{display:inline-flex; align-items:center; gap:9px; font-family:var(--sans); font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--nom-sage-d)}
+  .tour h2{font-size:clamp(30px,5vw,50px); font-weight:600; letter-spacing:-.02em; line-height:1; margin:.16em 0 .12em}
+  .tour .say{font-family:var(--serif); font-style:italic; font-size:clamp(18px,2.4vw,23px); color:var(--nom-sage-d); margin:0 0 14px; max-width:30ch}
+  .tour .desc{font-family:var(--serif); font-size:16px; line-height:1.62; color:#3b3d33; max-width:52ch; margin:0 0 20px}
+  .tour-list{list-style:none; margin:0 0 26px; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:11px 20px}
+  @media(max-width:520px){.tour-list{grid-template-columns:1fr}}
+  .tour-list li{font-family:var(--sans); font-size:14px; color:var(--nom-ink); padding-left:24px; position:relative; line-height:1.4}
+  .tour-list li:before{content:"🌿"; position:absolute; left:0; top:1px; font-size:13px}
+  .tour-cta{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+  .tour-card{background:#fff; border:1px solid var(--nom-line); padding:clamp(24px,3vw,32px); box-shadow:0 24px 60px -34px rgba(0,0,0,.35)}
+  .tour-card .big{font-size:clamp(34px,5vw,52px); font-weight:600; letter-spacing:-.02em; line-height:.95; color:var(--nom-sage-d)}
+  .tour-card .big small{font-family:var(--sans); font-size:14px; color:var(--nom-wood); font-weight:600; display:block; margin-top:6px; letter-spacing:0}
+  .tour-card .rr{display:flex; justify-content:space-between; gap:14px; padding:13px 0; border-bottom:1px solid var(--nom-line); font-family:var(--sans); font-size:14px}
+  .tour-card .rr:last-of-type{border-bottom:none}
+  .tour-card .rr .k{font-weight:700}
+  .tour-card .rr .v{font-family:var(--serif); font-style:italic; color:var(--nom-wood); white-space:nowrap}
+  .tour-card .top{margin-bottom:6px; padding-bottom:16px; border-bottom:1px solid var(--nom-line)}
+  .tour-note{font-family:var(--sans); font-size:12.5px; color:var(--nom-sage-d); margin-top:16px; line-height:1.5}
+
+  /* VISIT */
+  .visit{background:var(--panel); padding:clamp(48px,7vw,88px) 0; border-top:1px solid var(--line)}
+  .visit-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(28px,5vw,56px); align-items:start}
+  @media(max-width:800px){.visit-grid{grid-template-columns:1fr}}
+  .hours{border:1px solid var(--line)}
+  .hours .row{display:flex; justify-content:space-between; padding:13px 20px; border-bottom:1px solid var(--line); font-size:14.5px}
+  .hours .row:last-child{border-bottom:none}
+  .find p{font-size:16px; color:var(--ink); line-height:1.6; margin:0 0 16px; max-width:44ch}
+  .find .stairs{background:#FFFBEE; border:1px solid var(--gold); padding:16px 18px; font-size:14.5px; margin-bottom:20px}
+  .find .stairs b{color:#8a6b00}
+
+  footer{background:#111414; color:#D6DAD9; padding:clamp(48px,7vw,80px) 0 38px}
+  .foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:26px}
+  @media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+  .foot-grid h4{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#7E8583; margin:0 0 13px; font-weight:700}
+  .foot-grid p{margin:0 0 7px; font-size:14px; color:#C4C8C7}
+  .foot-grid a{display:block; margin:0 0 7px; font-size:14px; color:#C4C8C7; text-decoration:none; transition:color .2s}
+  .foot-grid a:hover{color:var(--gold)}
+  .foot-lead .nm{font-family:var(--geo); font-weight:800; font-size:19px; color:#fff; margin-bottom:9px}
+  .dotrow{display:flex; gap:16px; flex-wrap:wrap; margin-top:15px; font-size:12.5px}
+  .dotrow span{display:inline-flex; align-items:center; gap:7px; color:#99A09E}
+  .fdot{width:9px; height:10px}
+  .frule{height:1px; background:#242829; margin:38px 0 22px}
+  .fbot{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:#767D7B; font-size:12.5px}
+
+  /* PHOTO REELS (rolling marquee) */
+  .reelband{padding:clamp(26px,3.5vw,40px) 0}
+  .reelband .rl-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin:0 0 16px; padding:0 clamp(20px,5vw,52px)}
+  .reelband .rl-head .ey{margin:0}
+  .reelband .rl-head .rl-t{font-family:var(--brut); font-weight:400; font-size:clamp(22px,3vw,34px); letter-spacing:.01em; text-transform:uppercase; margin:0; line-height:.95}
+  .reel{overflow:hidden; position:relative;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+  .reel-track{display:flex; gap:12px; width:max-content; animation:reelscroll 70s linear infinite}
+  .reel:hover .reel-track{animation-play-state:paused}
+  .reel-item{margin:0; position:relative; flex:none; background:#E9E3D4; border:1px solid var(--line); overflow:hidden; display:block; color:inherit; text-decoration:none}
+  .reel-item img{height:clamp(180px,22vw,236px); width:auto; max-width:none; display:block; object-fit:cover; transition:transform .4s}
+  a.reel-item{cursor:pointer}
+  a.reel-item:hover img{transform:scale(1.05)}
+  .reel-item figcaption{position:absolute; left:0; right:0; bottom:0; padding:22px 13px 9px; font-size:12px; font-weight:700; color:#fff;
+    background:linear-gradient(transparent,rgba(0,0,0,.72))}
+  .reel-item .rc-ig{display:block; font-size:11px; font-weight:600; color:#F5C518; opacity:0; transition:opacity .2s; margin-top:1px}
+  a.reel-item:hover .rc-ig{opacity:1}
+  .reel.sage .reel-item{background:#E6E8DC; border-color:var(--nom-line)}
+  .rl-more{margin-left:auto; font-weight:700; font-size:13.5px; color:var(--port); text-decoration:none; white-space:nowrap; align-self:center}
+  .rl-more:hover{text-decoration:underline}
+  .rl-more.sage{color:var(--nom-sage-d)}
+  @keyframes reelscroll{from{transform:translateX(0)} to{transform:translateX(calc(-50% - 6px))}}
+  @media(prefers-reduced-motion:reduce){.reel-track{animation:none} .reel{overflow-x:auto}}
+
+  /* MARKET TOUR photos */
+  .tour-photos{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:22px}
+  .tour-photos img{width:100%; height:clamp(150px,20vw,210px); object-fit:cover; border:1px solid var(--nom-line)}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1; transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none} html{scroll-behavior:auto} .btn:hover{transform:none} .card:hover .ph img{transform:none}}
+  :focus-visible{outline:3px solid var(--port); outline-offset:2px}
+
+  /* SISTER-VENUE CROSS-LINK (used on both pages) */
+  .nomcross{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,52px); align-items:center;
+    background:var(--nom-bg); border:1px solid var(--nom-line); border-left:6px solid var(--nom-sage); padding:clamp(24px,4vw,40px)}
+  @media(max-width:760px){.nomcross{grid-template-columns:1fr}}
+  .nomcross-photos{display:grid; grid-template-columns:1.3fr .7fr; gap:10px}
+  .nomcross-photos img{width:100%; height:clamp(210px,26vw,300px); object-fit:cover; border:1px solid var(--nom-line)}
+  .nomcross-body .down{display:inline-flex; align-items:center; gap:9px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--nom-sage-d)}
+  .nomcross-body h2{font-family:var(--geo); font-size:clamp(34px,5vw,54px); font-weight:600; color:var(--nom-ink); letter-spacing:-.02em; margin:.12em 0 .04em; line-height:.96}
+  .nomcross-body .wm{font-family:var(--sans); font-size:14.5px; color:var(--nom-sage-d); margin:0 0 12px}
+  .nomcross-body .desc{font-family:var(--serif); font-size:16px; line-height:1.6; color:#3b3d33; margin:0 0 18px; max-width:52ch}
+
+  /* NOMAD-PAGE THEME OVERRIDES (green/sage brand, same tokens) */
+  .page.nom{background:var(--nom-bg); color:var(--nom-ink)}
+  .page.nom .mtab.on{background:var(--nom-sage-d); border-color:var(--nom-sage-d); color:#fff}
+  .page.nom .mtab:hover{border-color:var(--nom-sage)}
+  .page.nom .mp .std{color:var(--nom-ink)}
+  .page.nom .navcta{background:var(--nom-sage-d)}
+  .page.nom .navcta:hover{background:var(--nom-sage)}
+  .page.nom nav{background:rgba(245,246,236,.9)}
+</style>
+
+<div class="page nom">
+  <nav>
+    <a class="brand" href="#top"><span class="markL hex" style="background:var(--nom-sage-d);color:#fff">N</span> Nomad</a>
+    <div class="navlinks">
+      <a href="#menu">Menu</a>
+      <a href="#deals">Deals</a>
+      <a href="#visit">Visit</a>
+      <a href="levelup-site.html">Level Up ↗</a>
+      <a class="navcta hex" href="#visit">Find us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="nomad" id="top">
+    <svg class="sprig" style="top:-8px;right:-14px;width:min(320px,40vw)" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#6E8659" stroke-width="2.4" stroke-linecap="round"><path d="M150 8 Q120 90 68 162"/><path d="M132 46 Q160 40 176 20"/><path d="M132 46 Q150 66 172 66"/><path d="M116 84 Q146 80 162 60"/><path d="M116 84 Q134 104 156 106"/><path d="M100 122 Q130 118 146 98"/><path d="M100 122 Q118 142 140 146"/></g></svg>
+    <div class="wrap inner">
+      <div class="nomad-grid">
+        <div class="reveal">
+          <span class="down">🌿 The urban sanctuary · Siem Reap</span>
+          <h2>Nomad</h2>
+          <p class="wm">ជម្រកក្នុងទីក្រុង · the urban sanctuary</p>
+          <p class="say">An open-fronted sanctuary of wood, plants and afternoon light.</p>
+          <p class="desc">Chef Noo's modern, Khmer-influenced cooking is the heart of Nomad — served in an open courtyard of wooden bar, leather booths and greenery. $5 cocktails and $3 mocktails from the bar, coffee from the morning, and a kitchen that runs breakfast through dinner. Level Up sits directly upstairs — same door, same building.</p>
+          <div class="nom-cta">
+            <a class="btn btn-sage" href="#menu">See the menu</a>
+            <a class="btn btn-sage-line" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener">Nomad on Instagram ↗</a>
+            <a class="btn btn-sage-line" href="https://share.google/HKY5nmJqW1t4aeupJ" target="_blank" rel="noopener">Directions</a>
+          </div>
+          <p class="nom-close" style="margin-top:24px">អរគុណ 🌿🙏</p>
+        </div>
+        <div class="nom-photos reveal">
+          <img src="img/nomad-1.jpg" alt="Nomad at dusk — clustered rattan lanterns over booth seating framed by plants">
+          <img src="img/nomad-2.jpg" alt="An iced drink on a wooden table amid Nomad's greenery">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOD REEL -->
+  <section class="reelband reveal" aria-label="From Nomad's kitchen" style="background:var(--nom-bg)">
+    <div class="rl-head"><p class="ey" style="color:var(--nom-sage-d)">From the kitchen</p><p class="rl-t">Straight from Chef Noo's pass</p><a class="rl-more sage" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener">See more on Instagram ↗</a></div>
+    <div class="reel sage"><div class="reel-track"><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Beef Rollington — see more on Instagram"><img src="img/nomad-food-1.jpg" alt="Beef Rollington" decoding="async"><figcaption>Beef Rollington <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Wood-fired pizza — see more on Instagram"><img src="img/nomad-food-2.jpg" alt="Wood-fired pizza" decoding="async"><figcaption>Wood-fired pizza <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Amok scotch egg — see more on Instagram"><img src="img/nomad-food-3.jpg" alt="Amok scotch egg" decoding="async"><figcaption>Amok scotch egg <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Chicken &amp; avocado salad — see more on Instagram"><img src="img/nomad-food-4.jpg" alt="Chicken &amp; avocado salad" decoding="async"><figcaption>Chicken &amp; avocado salad <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Margarita from the bar — see more on Instagram"><img src="img/nomad-food-5.jpg" alt="Margarita from the bar" decoding="async"><figcaption>Margarita from the bar <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="The Hungry Nomad breakfast — see more on Instagram"><img src="img/nomad-food-6.jpg" alt="The Hungry Nomad breakfast" decoding="async"><figcaption>The Hungry Nomad breakfast <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="A cold one in the garden — see more on Instagram"><img src="img/nomad-food-7.jpg" alt="A cold one in the garden" decoding="async"><figcaption>A cold one in the garden <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Beef Rollington — see more on Instagram"><img src="img/nomad-food-1.jpg" alt="Beef Rollington" decoding="async"><figcaption>Beef Rollington <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Wood-fired pizza — see more on Instagram"><img src="img/nomad-food-2.jpg" alt="Wood-fired pizza" decoding="async"><figcaption>Wood-fired pizza <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Amok scotch egg — see more on Instagram"><img src="img/nomad-food-3.jpg" alt="Amok scotch egg" decoding="async"><figcaption>Amok scotch egg <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Chicken &amp; avocado salad — see more on Instagram"><img src="img/nomad-food-4.jpg" alt="Chicken &amp; avocado salad" decoding="async"><figcaption>Chicken &amp; avocado salad <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="Margarita from the bar — see more on Instagram"><img src="img/nomad-food-5.jpg" alt="Margarita from the bar" decoding="async"><figcaption>Margarita from the bar <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="The Hungry Nomad breakfast — see more on Instagram"><img src="img/nomad-food-6.jpg" alt="The Hungry Nomad breakfast" decoding="async"><figcaption>The Hungry Nomad breakfast <span class="rc-ig">See more ↗</span></figcaption></a><a class="reel-item" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener" aria-label="A cold one in the garden — see more on Instagram"><img src="img/nomad-food-7.jpg" alt="A cold one in the garden" decoding="async"><figcaption>A cold one in the garden <span class="rc-ig">See more ↗</span></figcaption></a></div></div>
+  </section>
+
+  <!-- MENU -->
+  <section class="band" id="menu" style="background:var(--nom-bg)">
+    <div class="wrap">
+      <div class="head reveal"><p class="ey" style="color:var(--nom-sage-d)">Eat &amp; drink</p><h2>The menu</h2>
+        <p>Chef Noo's kitchen, from breakfast to dinner. Prices in US$. Dine in downstairs, or order from Level Up upstairs and it comes to your table.</p></div>
+      <div class="reveal">
+        <div class="mtabs" id="mtabs"><button class="mtab on" data-m="breakfast">Breakfast</button><button class="mtab" data-m="omelettes">Omelettes</button><button class="mtab" data-m="starters">Starters</button><button class="mtab" data-m="salads">Salads</button><button class="mtab" data-m="signatures">Signatures</button><button class="mtab" data-m="pita">Pita Pockets</button><button class="mtab" data-m="market">Market Menu</button><button class="mtab" data-m="pizza">Pizza</button><button class="mtab" data-m="drinks">Coffee & Cooler</button><button class="mtab" data-m="bar">Bar</button></div>
+        <div class="menu-box">
+          <div class="mhead"><span>Nomad · food &amp; drink</span><div class="cols"><span>Price</span></div></div>
+          <div id="mpanels"><div class="mpanel" data-mp="breakfast"><p class="mnote">Build your own — ask at the bar</p><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Hungry Nomad </div><div class="md">2 bacon, 2 eggs, 2 sausages, hash brown, mushrooms, tomato, flatbread · tea, coffee or juice</div></div><div class="mp"><span class="std">$8.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Mini Nomad </div><div class="md">2 bacon, 1 egg, 1 sausage, hash brown, flatbread · tea, coffee or juice</div></div><div class="mp"><span class="std">$6.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Breakfast Pita Pocket </div><div class="md">Flatbread, bacon, sausage, scrambled eggs, hash brown</div></div><div class="mp"><span class="std">$5.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Sunrise Fritta </div><div class="md">Fried pizza dough, avocado, bacon, poached egg, tomato-onion salsa</div></div><div class="mp"><span class="std">$4.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Muesli <span class="vtag v">Veg</span></div><div class="md">Fresh fruit, yogurt, honey</div></div><div class="mp"><span class="std">$3.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Pancakes <span class="vtag v">Veg</span></div><div class="md">Fresh fruit, honey</div></div><div class="mp"><span class="std">$3.50</span></div></div></div></div><div class="mpanel" data-mp="omelettes" style='display:none'><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">The Mexican </div><div class="md">Onions, peppers, tomato, chilli, jalapeños, chicken, cheese, hot sauce</div></div><div class="mp"><span class="std">$5.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">The Mediterranean <span class="vtag v">Veg</span></div><div class="md">Onions, peppers, rocket, olives, feta</div></div><div class="mp"><span class="std">$4.00</span></div></div><div class="mrow"><div class="mi"><div class="mn">The Denver </div><div class="md">Onions, peppers, bacon, cheese</div></div><div class="mp"><span class="std">$4.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Pad Gra Pao </div><div class="md">Minced pork, holy basil, chillies, garlic</div></div><div class="mp"><span class="std">$4.25</span></div></div></div></div><div class="mpanel" data-mp="starters" style='display:none'><p class="mnote">Sides $1.75 (members $1.40) — garlic bread · onion rings · fries · sweet potato fries · garden salad</p><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Chicken Wings </div><div class="md">3 wings, garlic mayo dip</div></div><div class="mp"><span class="std">$3.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Chicken Strips </div><div class="md">Breaded, garlic mayo dip</div></div><div class="mp"><span class="std">$3.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">3 Dip Sharing Plate <span class="vtag vg">Vegan</span></div><div class="md">Flatbread, crudités, cauliflower dip, baba ganoush, pumpkin dip</div></div><div class="mp"><span class="std">$4.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Mac & Cheese Bacon Balls </div><div class="md">Deep-fried cheesy macaroni, bacon, hot sauce</div></div><div class="mp"><span class="std">$3.75</span></div></div></div></div><div class="mpanel" data-mp="salads" style='display:none'><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Broccoli Feta <span class="vtag v">Veg</span></div><div class="md">Crunchy broccoli, feta, raisins</div></div><div class="mp"><span class="std">$4.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Bok Lahong </div><div class="md">Papaya, green beans, tomato, fish sauce, cashews</div></div><div class="mp"><span class="std">$3.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Chicken & Avocado </div><div class="md">Chicken, avocado, lettuce, cucumber, tomato, onion</div></div><div class="mp"><span class="std">$5.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Cucumber & Avocado </div><div class="md">Chicken, feta, avocado, lettuce, cucumber, tomato, onion</div></div><div class="mp"><span class="std">$4.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Spicy Beef </div><div class="md">Medium-rare beef, long green beans, peanuts</div></div><div class="mp"><span class="std">$4.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Crispy Mushroom <span class="vtag vg">Vegan</span></div><div class="md">Crispy mushrooms, avocado, onion, lettuce, cucumber</div></div><div class="mp"><span class="std">$5.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Pomelo Salad <span class="vtag vg">Vegan</span></div><div class="md">Chicken or mushroom, pomelo, red onion, cashews, rocket</div></div><div class="mp"><span class="std">$4.75</span></div></div></div></div><div class="mpanel" data-mp="signatures" style='display:none'><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Cashew Carbonara <span class="vtag vg">Vegan</span></div><div class="md">Spaghetti, creamy cashew sauce, mushrooms</div></div><div class="mp"><span class="std">$7.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Amok Scotch Egg </div><div class="md">Amok-spiced chicken, soft egg, crispy onion, amok sauce</div></div><div class="mp"><span class="std">$6.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Bacon Pad Kee Mao </div><div class="md">Drunken noodles — bacon, basil, green peppercorns, chilli</div></div><div class="mp"><span class="std">$6.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Beef Rollington </div><div class="md">Beef tenderloin, bacon, mushroom pâté, mash, gravy, veg</div></div><div class="mp"><span class="std">$8.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Crispy Morning Glory </div><div class="md">Prawns, minced pork, creamy spicy sauce, rice</div></div><div class="mp"><span class="std">$7.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Bangers & Mash </div><div class="md">2 Cumberland sausages, mash, red wine gravy</div></div><div class="mp"><span class="std">$8.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Cordon Bleu </div><div class="md">Breaded chicken, bacon, cheese, mushroom sauce, fries or mash</div></div><div class="mp"><span class="std">$7.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Street Salad </div><div class="md">Bok lahong with 2 crispy chicken wings</div></div><div class="mp"><span class="std">$5.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Mexican Pizza </div><div class="md">Chilli beef, pickled chillies, guacamole, cheese, tortilla base</div></div><div class="mp"><span class="std">$8.50</span></div></div></div></div><div class="mpanel" data-mp="pita" style='display:none'><p class="mnote">Homemade flatbread · add fries, sweet potato, onion rings or salad for $1</p><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Falafel & Pumpkin <span class="vtag vg">Vegan</span></div><div class="md">Crumbled falafel, lettuce, cucumber, pumpkin seeds, cashew-pumpkin dressing</div></div><div class="mp"><span class="std">$4.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Crispy Mushroom <span class="vtag vg">Vegan</span></div><div class="md">Deep-fried mushrooms, lettuce, tomato, cucumber, avocado, baba ganoush</div></div><div class="mp"><span class="std">$4.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Thousand Island Chicken </div><div class="md">Breaded chicken, avocado, lettuce, tomato, onion, thousand island</div></div><div class="mp"><span class="std">$5.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">BLT </div><div class="md">Bacon, lettuce, tomato</div></div><div class="mp"><span class="std">$5.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Beef Lok Lak </div><div class="md">Tender beef, oyster & tomato sauce</div></div><div class="mp"><span class="std">$5.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Steakhouse Melt </div><div class="md">Grilled steak, mustard, mozzarella, cheddar, bell peppers</div></div><div class="mp"><span class="std">$5.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Loaded Chilli Fries </div><div class="md">Chilli beef, pickled chillies, mozzarella, cheddar, fries — in a pita</div></div><div class="mp"><span class="std">$5.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Breakfast Fry Up </div><div class="md">Bacon, sausage, scrambled eggs, hash brown</div></div><div class="mp"><span class="std">$5.75</span></div></div></div></div><div class="mpanel" data-mp="market" style='display:none'><p class="mnote">any 2 dishes + fried rice $9 · all served with steamed rice · Monday 20% off</p><div class="mrows"><div class="mband"><span class="mb-big">$5.25 <small>each</small></span><span class="mb-pill">Mon $4.20 · 20% off</span></div><div class="mrow"><div class="mi"><div class="mn">Beef / Mushroom Stew <span class="vtag vg">Vegan</span></div><div class="md">Traditional Khmer stew, flatbread or rice</div></div></div><div class="mrow"><div class="mi"><div class="mn">Char Kadaow Chicken </div><div class="md">Lemongrass, galangal, chillies, aromatic herbs</div></div></div><div class="mrow"><div class="mi"><div class="mn">Crispy Pork Belly & Kale </div><div class="md">Crispy pork belly, wok-fried kale</div></div></div><div class="mrow"><div class="mi"><div class="mn">Beef Lok Lak </div><div class="md">Tender beef, oyster & tomato sauce</div></div></div><div class="mrow"><div class="mi"><div class="mn">Stir Fried Fish & Cashews </div><div class="md">River fish, red onion, celery, cashew nuts</div></div></div><div class="mrow"><div class="mi"><div class="mn">Pineapple Stir Fry </div><div class="md">Pineapple with beef or chicken</div></div></div><div class="mrow"><div class="mi"><div class="mn">Smoked Eggplant <span class="vtag vg">Vegan</span></div><div class="md">Char-grilled eggplant, garlic, tofu or pork</div></div></div><div class="mrow"><div class="mi"><div class="mn">Pad Gra Pao <span class="vtag vg">Vegan</span></div><div class="md">Minced pork or falafel, chillies, basil, garlic, onion</div></div></div><div class="mrow"><div class="mi"><div class="mn">Stir Fried Noodles <span class="vtag v">Veg</span></div><div class="md">Vegetables, chicken / pork / tofu</div></div></div><div class="mrow"><div class="mi"><div class="mn">Vegetable Stir Fry <span class="vtag vg">Vegan</span></div><div class="md">Mixed veg, cashew nuts</div></div></div><div class="mrow"><div class="mi"><div class="mn">Char Kreung </div><div class="md">Chicken, lemongrass, galangal, kaffir lime, garlic, turmeric</div></div></div><div class="mrow"><div class="mi"><div class="mn">Chicken & Garlic </div><div class="md">Chicken, garlic, black pepper, coriander</div></div></div></div></div><div class="mpanel" data-mp="pizza" style='display:none'><p class="mnote">48-hour dough · extras: veg $1.00, meat/cheese $1.25, dips $0.75 · Sunday: any pizza $6</p><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Margherita </div><div class="md">Mozzarella, homemade tomato sauce</div></div><div class="mp"><span class="std">$7.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Vegan Special <span class="vtag vg">Vegan</span></div><div class="md">Broccoli, cauliflower, cashews, peppers, olives, pumpkin ‘cheese’</div></div><div class="mp"><span class="std">$8.00</span></div></div><div class="mrow"><div class="mi"><div class="mn">Veg Head <span class="vtag v">Veg</span></div><div class="md">Peppers, onions, mushrooms, broccoli, cashews, mozzarella</div></div><div class="mp"><span class="std">$8.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Hawaiian Twist </div><div class="md">Bacon, pineapple, mozzarella, tomato sauce</div></div><div class="mp"><span class="std">$9.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Salami </div><div class="md">Salami, mozzarella, tomato sauce</div></div><div class="mp"><span class="std">$9.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Bacon Chilli </div><div class="md">In-house pickled chilli, bacon, mozzarella</div></div><div class="mp"><span class="std">$9.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">The Denver </div><div class="md">Chicken, bell peppers, red onion, mozzarella</div></div><div class="mp"><span class="std">$9.00</span></div></div><div class="mrow"><div class="mi"><div class="mn">Full English </div><div class="md">Sausage, bacon, hash brown, mozzarella, tomato sauce</div></div><div class="mp"><span class="std">$10.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Meat Feast </div><div class="md">Chorizo, bacon, chicken, pickled chillies, mozzarella</div></div><div class="mp"><span class="std">$10.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Garlic Bread <span class="vtag v">Veg</span></div><div class="md">Full pizza base, garlic butter</div></div><div class="mp"><span class="std">$4.50</span></div></div></div></div><div class="mpanel" data-mp="drinks" style='display:none'><p class="mnote">Coffee hot or iced · syrup shot or plant milk +$0.50</p><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Espresso </div></div><div class="mp"><span class="std">$0.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Americano </div></div><div class="mp"><span class="std">$1.25</span></div></div><div class="mrow"><div class="mi"><div class="mn">Latte </div></div><div class="mp"><span class="std">$1.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Flat White </div></div><div class="mp"><span class="std">$1.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Cappuccino </div></div><div class="mp"><span class="std">$1.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Mocha </div></div><div class="mp"><span class="std">$2.00</span></div></div><div class="mrow"><div class="mi"><div class="mn">Fresh Juice </div></div><div class="mp"><span class="std">$1.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Smoothie </div></div><div class="mp"><span class="std">$2.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Kombucha </div></div><div class="mp"><span class="std">$2.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Tea by the pot </div></div><div class="mp"><span class="std">$2.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">Soft Drink (can) </div><div class="md">Sprite, Coke, soda, tonic</div></div><div class="mp"><span class="std">$1.50</span></div></div></div></div><div class="mpanel" data-mp="bar" style='display:none'><p class="mnote">Happy Hour 4–7pm — 2 for 1 on all drinks</p><div class="mrows"><div class="mrow"><div class="mi"><div class="mn">Cambodia Beer </div></div><div class="mp"><span class="std">$1.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">House Wine </div><div class="md">White or red, glass</div></div><div class="mp"><span class="std">$4.50</span></div></div><div class="mrow"><div class="mi"><div class="mn">House Spirit & Mixer </div></div><div class="mp"><span class="std">$3.75</span></div></div><div class="mrow"><div class="mi"><div class="mn">Cocktails </div><div class="md">Rotating list</div></div><div class="mp"><span class="std">$5.00</span></div></div><div class="mrow"><div class="mi"><div class="mn">Mocktails </div></div><div class="mp"><span class="std">$3.00</span></div></div></div></div></div>
+        </div>
+        <div class="menu-legend"><span><b class="vtag v">Veg</b> vegetarian</span><span><b class="vtag vg">Vegan</b> vegan</span><span>Happy Hour 4–7pm (2 for 1) · Monday Market Menu 20% off · Sunday any pizza $6</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEALS / THE WEEK -->
+  <section class="band white" id="deals">
+    <div class="wrap">
+      <div class="head reveal"><p class="ey" style="color:var(--nom-sage-d)">What's on</p><h2>Deals &amp; the week</h2>
+        <p>All deals are dine-in. Times below are when each one runs.</p></div>
+      <div class="week-grid reveal">
+        <div class="wev sage"><span class="day"><span class="hx"></span>Every day · 4–7pm</span><h3>Happy Hour</h3><div class="tm">2 for 1 on all drinks</div><p class="ds">Every cocktail, beer and glass of wine — two for one, seven days a week.</p><span class="pr">2 for 1</span></div>
+        <div class="wev sage"><span class="day"><span class="hx"></span>Monday · all day</span><h3>Market Menu</h3><div class="tm">20% off · Khmer dishes</div><p class="ds">Market dishes drop from $5.25 to $4.20. Any 2 dishes + fried rice is $9.</p><span class="pr">20% off</span></div>
+        <div class="wev sage"><span class="day"><span class="hx"></span>Monday · 7pm</span><h3>Quiz Night</h3><div class="tm">Teams up to 6</div><p class="ds">Rounds, questions and good-natured chaos. Free to play — just turn up.</p><span class="pr free">Free</span></div>
+        <div class="wev sage"><span class="day"><span class="hx"></span>Tuesday · 6pm</span><h3>Chess Club</h3><div class="tm">All levels</div><p class="ds">Free drop-in. Bring a board if you have one; spares are here if you don't.</p><span class="pr free">Free</span></div>
+        <div class="wev sage"><span class="day"><span class="hx"></span>Sunday · all day</span><h3>Sunday Pizza</h3><div class="tm">48-hour dough</div><p class="ds">Any pizza on the menu, all day Sunday.</p><span class="pr">$6</span></div>
+        <div class="wev sage daily"><span class="day"><span class="hx"></span>Every day · 8am–11pm</span><h3>Open 7 days</h3><div class="tm">Kitchen till 10pm</div><p class="ds">Coffee from morning, dinner into the night. Just walk in.</p><span class="pr free">Open</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chef Noo's guided market experience is gated OFF pending owner sign-off (FACTS section 9: agents-only; direct booking not advertised yet). Flip PROMOTE_MARKET_TOUR=True in build_site.py to restore it. -->
+  <!-- SISTER VENUE: LEVEL UP (upstairs) -->
+  <section class="band" id="upstairs" style="background:var(--nom-bg)">
+    <div class="wrap">
+      <div class="head reveal"><p class="ey" style="color:#8a6b00">Our sister venue</p><h2>Right upstairs: Level Up</h2>
+        <p>One floor above Nomad, through the same door — Siem Reap's screen-free social hub.</p></div>
+      <div class="nomcross reveal" style="border-left-color:var(--gold)">
+        <div class="nomcross-photos">
+          <img src="img/lu-venue.jpg" alt="Inside Level Up — board-game shelves and lounge seating">
+          <img src="img/lu-play.jpg" alt="Friends around a table mid board-game at Level Up">
+        </div>
+        <div class="nomcross-body">
+          <span class="down" style="color:#8a6b00">▲ Upstairs · same door, one floor up</span>
+          <h2 style="color:var(--ink)">Level Up</h2>
+          <p class="wm" style="color:#8a6b00">Siem Reap's screen-free social hub</p>
+          <p class="desc">An air-conditioned floor of board games, coworking and community — hundreds of games off the shelf, from $2 an hour. Order Nomad's kitchen straight to your table up there, or come down to eat in.</p>
+          <div class="nom-cta">
+            <a class="btn btn-gold" href="levelup-site.html">Visit Level Up's page ↗</a>
+            <a class="btn btn-line" href="https://www.instagram.com/levelupsiemreap" target="_blank" rel="noopener">Level Up on Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit" id="visit" style="background:var(--panel)">
+    <div class="wrap">
+      <div class="head reveal"><p class="ey" style="color:var(--nom-sage-d)">Visit us</p><h2>Find Nomad</h2></div>
+      <div class="visit-grid">
+        <div class="find reveal">
+          <div class="stairs" style="background:#F1F6EA;border-color:var(--nom-sage)"><b>Where we are:</b> Wat Damnak / 9V24, Siem Reap. Open-fronted at street level — Level Up is directly upstairs, same door.</div>
+          <p>Open every day, 8am–11pm — the kitchen runs until 10pm. Coffee from the morning, Happy Hour 4–7pm, dinner into the night.</p>
+          <div class="cta-row">
+            <a class="btn btn-sage" href="https://share.google/HKY5nmJqW1t4aeupJ" target="_blank" rel="noopener">Open in Maps ↗</a>
+            <a class="btn btn-sage-line" href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener">@nomadeaterysiemreap</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="hours">
+            <div class="row"><b>Mon – Sun</b><span class="num">8:00am – 11:00pm</span></div>
+            <div class="row"><b>Kitchen</b><span>until 10:00pm</span></div>
+            <div class="row"><b>Happy Hour</b><span>4–7pm · 2 for 1 drinks</span></div>
+            <div class="row"><b>Instagram</b><span>@nomadeaterysiemreap</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="reveal foot-lead">
+          <div class="nm">Nomad · Siem Reap</div>
+          <p>The urban sanctuary — Chef Noo's modern Khmer cooking, open-fronted, plants and afternoon light. Downstairs from Level Up.</p>
+          <div class="dotrow"><span><span class="fdot hex" style="background:var(--nom-sage)"></span>Nomad</span><span><span class="fdot hex" style="background:var(--gold)"></span>Level Up</span></div>
+        </div>
+        <div class="reveal"><h4>Nomad</h4><p>Open 7 days · 8am–11pm</p><p>Kitchen till 10pm</p><a href="https://www.instagram.com/nomadeaterysiemreap" target="_blank" rel="noopener">@nomadeaterysiemreap</a><a href="https://share.google/HKY5nmJqW1t4aeupJ" target="_blank" rel="noopener">Open in Google Maps ↗</a></div>
+        <div class="reveal"><h4>Deals</h4><p>Happy Hour 4–7pm · 2 for 1</p><p>Monday Market Menu 20% off</p><p>Sunday any pizza $6</p><a href="#deals">See the week ↑</a></div>
+        <div class="reveal"><h4>Level Up</h4><p>Upstairs · 8am–midnight</p><p>Board games &amp; coworking</p><a href="levelup-site.html">levelupsiemreap.com ↗</a><a href="https://www.instagram.com/levelupsiemreap" target="_blank" rel="noopener">@levelupsiemreap</a></div>
+      </div>
+      <div class="frule"></div>
+      <div class="fbot"><span>Wat Damnak / 9V24, Siem Reap, Cambodia</span><span>Well-fed downstairs · screen-free upstairs</span></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ---------- MENU TABS ---------- */
+(function(){
+  var tabs=document.getElementById('mtabs'), panels=document.getElementById('mpanels');
+  if(!tabs||!panels) return;
+  tabs.addEventListener('click',function(e){
+    var b=e.target.closest('.mtab'); if(!b) return;
+    tabs.querySelectorAll('.mtab').forEach(function(t){t.classList.remove('on')});
+    b.classList.add('on');
+    panels.querySelectorAll('.mpanel').forEach(function(p){p.style.display = p.dataset.mp===b.dataset.m ? '' : 'none'});
+  });
+})();
+/* ---------- reveals ---------- */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.08,rootMargin:'0px 0px -5% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
