@@ -1,6 +1,10 @@
 # Cloudflare Pages redirects — old WordPress URLs -> new single-page site.
 # Keeps Google ranking from the old pages instead of 404ing. Specific rules first,
 # then a catch-all so ANY old path lands on the homepage rather than a dead end.
+# Tidy public URL for the Nomad page (added 2026-08-19). The file stays nomad-site.html on
+# purpose: venue_lint.py picks a page's home venue BY FILENAME.
+/nomad             /nomad-site  301
+/nomad/            /nomad-site  301
 /index.html        /            301
 /home              /            301
 /blog              /            301
@@ -25,3 +29,12 @@
 /friends           /#nomad      301
 /contact           /#visit      301
 /visit             /#visit      301
+
+# 🔴 TOMBSTONE 2026-08-19 — DO NOT RE-ADD A CATCH-ALL.
+# A greedy `/*  /  301` rule used to live at the bottom of this file. It was removed from the
+# DEPLOYED copy on 2026-08-01 (commit 086f9d0, "Fix redirect loop") because it matches `/` itself
+# and sends the homepage to the homepage forever, taking the whole site down.
+# That fix was never back-ported HERE, so this source file still carried the bad rule. On
+# 2026-08-19 this file was copied over the deployed one and took the live site down again for
+# about two minutes (`/` and `/nomad-site` both looping) until it was reverted.
+# Unmatched paths returning 404 is the CORRECT behaviour. Explicit rules above still work.
