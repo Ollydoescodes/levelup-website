@@ -6,6 +6,11 @@
 /nomad             /nomad-site  301
 /nomad/            /nomad-site  301
 /index.html        /            301
+# Safety net 2026-08-24: the Nomad page linked back to /levelup-site.html for weeks (404).
+# Links are fixed at source to point at `/`; these catch anything Google or a printed card
+# still holds. Specific rules only, never a catch-all (see tombstone below).
+/levelup-site.html /            301
+/levelup-site      /            301
 /home              /            301
 /blog              /            301
 /blog/*            /            301
