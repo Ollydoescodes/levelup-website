@@ -26,14 +26,25 @@
 /games             /#games      301
 /game-library      /#games      301
 /board-games       /#games      301
-/menu              /#menu       301
-/meals             /#menu       301
+/menu              /#nomad      301
+/meals             /#nomad      301
 /about             /#do         301
 /story             /#do         301
 /gallery           /#do         301
 /friends           /#nomad      301
 /contact           /#visit      301
 /visit             /#visit      301
+# 2026-09-22: the four old WordPress URLs Google STILL lists (site: search) all 404'd.
+# Trailing-slash variants are separate paths on Cloudflare Pages, so both are listed.
+# There is no #menu anchor on the page; food is the Nomad section, hence /#nomad.
+/menu-food-drinks-level-up   /#nomad     301
+/menu-food-drinks-level-up/  /#nomad     301
+/contact-us                  /#visit     301
+/contact-us/                 /#visit     301
+/membership-level-up         /#pricing   301
+/membership-level-up/        /#pricing   301
+/events-level-up             /#whatson   301
+/events-level-up/            /#whatson   301
 
 # 🔴 TOMBSTONE 2026-08-19 — DO NOT RE-ADD A CATCH-ALL.
 # A greedy `/*  /  301` rule used to live at the bottom of this file. It was removed from the
