@@ -45,6 +45,16 @@
 /membership-level-up/        /#pricing   301
 /events-level-up             /#whatson   301
 /events-level-up/            /#whatson   301
+# 2026-09-23: the rest of the REAL old WordPress pages from Search Console's 404 list (63 total;
+# the ~45 sixteen-character hex paths, /hello-world*, /author/*, /feed/ are junk and stay 404).
+/book-your-space-level-up    /#book      301
+/book-your-space-level-up/   /#book      301
+/our-story-level-up          /#do        301
+/our-story-level-up/         /#do        301
+/featured-events             /#whatson   301
+/featured-events/*           /#whatson   301
+/weekly-events               /#whatson   301
+/weekly-events/*             /#whatson   301
 
 # 🔴 TOMBSTONE 2026-08-19 — DO NOT RE-ADD A CATCH-ALL.
 # A greedy `/*  /  301` rule used to live at the bottom of this file. It was removed from the
